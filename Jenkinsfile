@@ -34,8 +34,7 @@ pipeline {
             steps {
                 echo 'Deploying and cleaning'
                 sh 'docker image rm cuongyd196/todoweb:1.0 || echo "this image does not exist" '
-                sh 'docker container stop my-demo-springboot || echo "this container does not exist" '
-                sh 'docker network create jenkins || echo "this network exists"'
+                sh 'docker container stop todoweb || echo "this container does not exist" '
                 sh 'echo y | docker container prune '
                 sh 'echo y | docker image prune'
                 sh 'docker container run -d --rm --name todoweb -p 8082:8080 --network jenkins cuongyd196/todoweb:1.0'
