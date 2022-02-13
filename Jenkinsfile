@@ -26,6 +26,21 @@ pipeline {
                 sh 'docker push cuongyd196/todoweb:1.0'
                 
             }
+            post {
+                success {
+                    telegramSend 'success stage '
+                }
+                failure {
+                    telegramSend 'failure stage '
+                }
+                
+                unstable {
+                    telegramSend ' unstable stage'
+                }
+                changed {
+                    telegramSend 'Things were different before...'
+                }
+            }
         }
         stage('Deploying and Cleaning') {
             steps {
