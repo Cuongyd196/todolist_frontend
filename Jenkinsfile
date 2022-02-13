@@ -32,6 +32,21 @@ pipeline {
                 echo 'Deploying and cleaning'
                 sh 'docker container run -d --rm --name todoweb -p 8082:8080 cuongyd196/todoweb'
             }
+            post {
+                success {
+                    telegramSend 'success stage '
+                }
+                failure {
+                    telegramSend 'failure stage '
+                }
+                
+                unstable {
+                    telegramSend ' unstable stage'
+                }
+                changed {
+                    telegramSend 'Things were different before...'
+                }
+            }
         }
     }
 }
