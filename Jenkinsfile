@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Deploying and Cleaning') {
             steps {
-                echo 'Deploying and cleaning'
+                echo 'Deploying and cleaning test'
                 sh 'docker container run -d --rm --name todoweb -p 8082:8080 cuongyd196/todoweb'
             }
             post {
