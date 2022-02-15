@@ -32,16 +32,16 @@ pipeline {
             steps {
                 echo 'Building image..'
                 sh 'docker build -t cuongyd196/todoweb .'
+                telegramSend ('Build - $PROJECT_NAME – # $BUILD_NUMBER – STATUS: $BUILD_STATUS!')
             }
-            telegramSend ('Build - $PROJECT_NAME – # $BUILD_NUMBER – STATUS: $BUILD_STATUS!')
         }
 
         stage('Deploying and Cleaning') {
             steps {
                 echo 'Deploying and cleaning test'
                 sh 'docker container run -d --rm --name todoweb -p 8085:8080 cuongyd196/todoweb'
+                telegramSend ('Deploying - $PROJECT_NAME – # $BUILD_NUMBER – STATUS: $BUILD_STATUS!')
             }
-            telegramSend ('Deploying - $PROJECT_NAME – # $BUILD_NUMBER – STATUS: $BUILD_STATUS!')
         }
     }
 }
