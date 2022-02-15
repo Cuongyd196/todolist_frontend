@@ -34,7 +34,7 @@ export default class CreateTodo extends Component {
             todo_priority: this.state.todo_priority,
             todo_completed: this.state.todo_completed
         };
-        axios.post(URL_API +'todos/create', newtodo)
+        axios.post(URL_API +'/api/todos/create', newtodo)
             .then(response => {
                 if (response.data != null) {
                    toastSuccess()

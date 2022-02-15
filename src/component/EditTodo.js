@@ -25,7 +25,7 @@ export  default  class EditTodo extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
     async componentDidMount() {
-        let todores = await axios.get(URL_API + 'todos/findOne/' + this.props.match.params.id)
+        let todores = await axios.get(URL_API + '/api/todos/findOne/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     title: response.data.todo_title,
@@ -74,7 +74,7 @@ export  default  class EditTodo extends Component {
             todo_priority: this.state.todo_priority,
             todo_completed: this.state.todo_completed
         };
-        await axios.put(URL_API +'todos/update/'+this.props.match.params.id, newtodo)
+        await axios.put(URL_API +'/api/todos/update/'+this.props.match.params.id, newtodo)
             .then(res =>
                 toastSuccess()
             )

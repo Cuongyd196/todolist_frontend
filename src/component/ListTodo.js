@@ -4,6 +4,7 @@ import axios from 'axios';
 import {toastError, toastSuccess} from "../helpers/toastHelper";
 import { Todo } from "./TableTodo";
 import ReloadHelper from "../helpers/reloadHelper";
+import {URL_API} from '../constant/constant';
 
 
 export default class TodosList extends Component {
@@ -18,14 +19,14 @@ export default class TodosList extends Component {
         this.onchangeSTT=this.onchangeSTT.bind(this);
     }
     async componentDidMount() {
-        let todosRes = await axios.get('http://localhost:4000/api/todos/findAll')
+        let todosRes = await axios.get(URL_API + '/api/todos/findAll')
         this.setState({loading: false})
         if (todosRes) {
             this.setState({todos: todosRes.data, todoList: todosRes.data})
         }
     }
     deleteFunc(id) {
-        axios.delete('http://localhost:4000/api/todos/delete/' + id)
+        axios.delete(URL_API + '/api/todos/delete/' + id)
             .then(response => {
                 if (response.data != null) {
                     toastSuccess()
@@ -41,14 +42,12 @@ export default class TodosList extends Component {
     async  onchangeSTT(event){
         let value = event.target.value
         this.setState({filterstt: value});
-        let dataFilter = await axios.get('http://localhost:4000/api/todos/findAll?trangthai=' + value)
+        let dataFilter = await axios.get(URL_API + 'api/todos/findAll?trangthai=' + value)
         this.setState({ loading: false })
         if(dataFilter){
-            console.log(dataFilter.data, 'dataFilter.data')
             this.setState({todos: dataFilter.data})
         }
     }
-  
     render() {
         return (
            
@@ -57,7 +56,6 @@ export default class TodosList extends Component {
                 <ReloadHelper
                     loading={this.state.loading}
                 />
-            
                 <br/>
                 <center><h3> Quản lý công việc</h3></center>
                 <br/>
