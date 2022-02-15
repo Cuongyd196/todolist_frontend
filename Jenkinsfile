@@ -16,6 +16,8 @@ pipeline {
         }
         stage('Login to Docker Hub') {
             steps{
+                sh 'docker-machine regenerate-certs default'
+                sh 'docker-machine restart default'
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW |  docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 echo 'Login Completed'
             }
