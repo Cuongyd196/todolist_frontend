@@ -19,7 +19,7 @@
     "react-scripts": "3.4.0",
     "react-spinners": "^0.8.1",
     "react-toastify": "^5.5.0",
-    "snyk": "^1.303.0"
+    "snyk": "^1.1187.0"
   },
   "scripts": {
     "start": "react-scripts start",
